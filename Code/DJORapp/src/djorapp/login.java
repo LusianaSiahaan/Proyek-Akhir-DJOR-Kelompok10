@@ -134,23 +134,31 @@ public class login extends javax.swing.JFrame {
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         // TODO add your handling code here:
-        try {
-            sql = "SELECT *  login";
-            rs = stat.executeQuery(sql);
-            
-            int baris = 0;
+    
+    try {
+      Class.forName("org.mariadb.jdbc.Driver").newInstance();
+    String url = "jdbc:mariadb://localhost/parkingsys?user=root&password=lusiana0507";
+    Connection connection = DriverManager.getConnection(url);
+    
+    String sql = "SELECT * FROM login";
+    PreparedStatement statement = connection.prepareStatement(sql);
+
+ResultSet rs = statement.executeQuery();
+
+int baris = 0;
             while (rs.next()) {
                 baris = rs.getRow();
             }
             
             if(baris==1){
-                if(username_.getText().equals(rs.getString("username")) && password_.getText().equals(rs.getString("passwordd"))){
+                if(username_.getText().equals(rs.getString("username")) && password_.getText().equals(rs.getString("password"))){
                     javax.swing.JOptionPane.showMessageDialog(null, "berhasil login");
                     new pendataan().setVisible(true);
                 }
             }else{
                     javax.swing.JOptionPane.showMessageDialog(null, "gagal login");
                 }
+        
         } catch (Exception e) {
            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
         }
