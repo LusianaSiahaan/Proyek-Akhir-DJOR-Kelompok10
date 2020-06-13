@@ -6,9 +6,6 @@ passwordd VARCHAR(50) NOT NULL);
 
 INSERT INTO login(nama_petugas, username, passwordd) VALUES ('Grace Panjaitan', 'grace.pjtn', 'grace1990');
 INSERT INTO login(nama_petugas, username, passwordd) VALUES ('Pemarkir DJOR', 'djorrr', '123456789');
-SELECT * FROM login WHERE username='grace.pjtn';
-
-
 
 CREATE TABLE transaksi(
 nomor_transaksi INT PRIMARY KEY,
@@ -37,18 +34,11 @@ no_polisi INT PRIMARY KEY,
 jenis_kendaraan SET, 
 lokasi_parkir CHAR,
 
-DROP TABLE ParkirMasuk
-
 CREATE TABLE jenis_kendaraan( 
 jenis INT PRIMARY KEY,
 nama_kendaraan VARCHAR(30)) 
-
-DROP TABLE jenis_kendaraan
 
 CREATE TABLE lokasi_parkir(
 nomor_slot INT,
 status_slot BOOLEAN,
 PRIMARY KEY (nomor_slot));
-DROP TABLE jenis_kendaraan
-
-DROP TABLE lokasi_parkir
