@@ -2,26 +2,82 @@ package djorapp;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.util.Date;
 
 /**
  *
  * @author User
  */
 public class history extends javax.swing.JFrame {
-
+    Koneksi konek = new Koneksi();
+    ResultSet rs;
+    Date tanggal_parkir;
+    DefaultTableModel pendataan;
+ 
     /**
      * Creates new form history
      */
     public history() {
         initComponents();
+        Koneksi DB = new Koneksi();
+        
              Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
 
         int x = layar.width / 2  - this.getSize().width / 2;
         int y = layar.height / 2 - this.getSize().height / 2;
 
         this.setLocation(x, y);
+        tabel();
     }
-
+    public void tabel(){
+        DefaultTableModel _tabel= new DefaultTableModel();
+        _tabel.addColumn("No Transaksi");
+        _tabel.addColumn("Tanggal Parkir");
+        _tabel.addColumn("Waktu Mulai");
+        _tabel.addColumn("Waktu Selesai");
+        _tabel.addColumn("Biaya");
+        _tabel.addColumn("No Slot");
+        _tabel.addColumn("Slot Parkir");
+        tbl_pend.setModel(_tabel);
+        
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss.SSS");
+        String dateString = format.format(new Date());
+        try {
+            Class.forName("org.mariadb.jdbc.Driver").newInstance();
+            String url = "jdbc:mariadb://localhost/djor?user=root&password=123456789";
+            Connection connection = DriverManager.getConnection(url);
+            Statement statement = connection.createStatement();
+            
+            String sql = "SELECT * tranksaksi";
+            ResultSet rs = statement.executeQuery(sql);
+            
+            
+            while (rs.next()) {
+                _tabel.addRow(new Object[]{
+                    rs.getInt("No Transaksi"),
+                    rs.getDate("Tanggal Parkir"),
+                    rs.getString("Waktu Mulai"),
+                    rs.getString("Waktu Selesai"),
+                    rs.getInt("Biaya"),
+                    rs.getString("No Slot"),
+                    rs.getString("Slot Parkir")
+                
+                });
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+        
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +90,10 @@ public class history extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_pend = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        cbJenis = new javax.swing.JComboBox<>();
+        btnReset = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -51,49 +110,108 @@ public class history extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_pend.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No Transaksi", "Tanggal Parkir", "Waktu Mulai", "Waktu Selesai", "Jenis Kendaraan", "Biaya"
+                "No Transaksi", "Tanggal Parkir", "Waktu Mulai", "Waktu Selesai", "Biaya", "No Slot", "Slot Parkir"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tbl_pend.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tbl_pendAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(tbl_pend);
+
+        jLabel2.setText("Jenis:");
+
+        cbJenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Pilih Jenis Kendaraan-", "Motor", "Mobil" }));
+        cbJenis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbJenisActionPerformed(evt);
+            }
+        });
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
-                .addGap(19, 19, 19))
+                .addGap(164, 164, 164)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbJenis, 0, 351, Short.MAX_VALUE)
+                .addGap(119, 119, 119))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(23, Short.MAX_VALUE)
+                        .addComponent(cbJenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReset)
+                .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        cbJenis.setSelectedIndex(0);
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void cbJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJenisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbJenisActionPerformed
+
+    private void tbl_pendAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbl_pendAncestorAdded
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tbl_pendAncestorAdded
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -130,9 +248,12 @@ public class history extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReset;
+    private javax.swing.JComboBox<String> cbJenis;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable tbl_pend;
     // End of variables declaration//GEN-END:variables
 }

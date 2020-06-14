@@ -29,9 +29,5 @@ public class Koneksi {
 }  
     }
     
-public Statement stat;
-public ResultSet set;
-
-
     }
 
