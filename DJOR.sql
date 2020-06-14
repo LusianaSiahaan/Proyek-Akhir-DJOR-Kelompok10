@@ -9,6 +9,7 @@ INSERT INTO login(nama_petugas, username, passwordd) VALUES ('Pemarkir DJOR', 'd
 
 CREATE TABLE transaksi(
 nomor_transaksi INT PRIMARY KEY,
+nomor_plat char(14),
 tgl_parkir DATE, 
 waktu_mulai TIME, 
 waktu_selesai TIME,
