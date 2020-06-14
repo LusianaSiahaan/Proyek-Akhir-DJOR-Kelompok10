@@ -15,8 +15,7 @@ waktu_selesai TIME,
 lama_parkir INT,
 biaya_parkir INT,
 jeniskendaraan INT,
-nomorslot INT,
-slot_parkir CHAR,
+nomorslot char(2),
 
 CONSTRAINT fk_jenis_transaksi
 	FOREIGN KEY (jeniskendaraan) REFERENCES jenis_kendaraan(jenis)
@@ -39,6 +38,6 @@ jenis INT PRIMARY KEY,
 nama_kendaraan VARCHAR(30)) 
 
 CREATE TABLE lokasi_parkir(
-nomor_slot INT,
+nomor_slot char(2),
 status_slot BOOLEAN,
 PRIMARY KEY (nomor_slot));
