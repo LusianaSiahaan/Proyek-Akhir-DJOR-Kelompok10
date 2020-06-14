@@ -11,11 +11,12 @@ public class login extends javax.swing.JFrame {
     Connection koneksi;
     Statement stat;
     ResultSet rs;
-    String sql;
+    String sql, username, passwordd;
 
     public login() {
         initComponents();
         Koneksi DB = new Koneksi();
+        
          Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
 
         int x = layar.width / 2  - this.getSize().width / 2;
@@ -134,34 +135,29 @@ public class login extends javax.swing.JFrame {
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         // TODO add your handling code here:
-    
-    try {
-      Class.forName("org.mariadb.jdbc.Driver").newInstance();
-    String url = "jdbc:mariadb://localhost/parkingsys?user=root&password=lusiana0507";
-    Connection connection = DriverManager.getConnection(url);
-    
-    String sql = "SELECT * FROM login";
-    PreparedStatement statement = connection.prepareStatement(sql);
-
-ResultSet rs = statement.executeQuery();
-
-int baris = 0;
-            while (rs.next()) {
-                baris = rs.getRow();
-            }
+        try {
+            Class.forName("org.mariadb.jdbc.Driver").newInstance();
+            String url = "jdbc:mariadb://localhost/djor?user=root&password=123456789";
+            Connection connection = DriverManager.getConnection(url);
+            username= username_.getText();
+            passwordd = password_.getText();
             
-            if(baris==1){
-                if(username_.getText().equals(rs.getString("username")) && password_.getText().equals(rs.getString("password"))){
+            String sql = "SELECT * FROM login where username = '"+username+"' AND passwordd = '"+passwordd+"'";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+        ResultSet rs = statement.executeQuery();
+        
+            if(rs.next() == true){
                     javax.swing.JOptionPane.showMessageDialog(null, "berhasil login");
                     new pendataan().setVisible(true);
-                }
             }else{
                     javax.swing.JOptionPane.showMessageDialog(null, "gagal login");
                 }
-        
+       
         } catch (Exception e) {
            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
         }
+           
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -203,6 +199,22 @@ int baris = 0;
         //</editor-fold>
 
         /* Create and display the form */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new login().setVisible(true);

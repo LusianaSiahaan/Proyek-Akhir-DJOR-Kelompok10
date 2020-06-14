@@ -2,14 +2,23 @@
 package djorapp;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
  * @author User
  */
 public class Koneksi {
+    Connection conn;
+    
+    public Connection getConn(){
+        return conn;
+    }
+    
     
     public static void main(String[] args) {
+    
         try {
     Class.forName("org.mariadb.jdbc.Driver").newInstance();
     Connection conn;
@@ -20,5 +29,9 @@ public class Koneksi {
 }  
     }
     
-    
-}
+public Statement stat;
+public ResultSet set;
+
+
+    }
+
