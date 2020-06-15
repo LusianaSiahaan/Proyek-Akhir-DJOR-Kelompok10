@@ -58,6 +58,7 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
         menit_park = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         tanggal_park = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         jLabel6.setText("jLabel6");
 
@@ -94,6 +95,8 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
             }
         });
 
+        BTNSimpan.setBackground(new java.awt.Color(24, 191, 80));
+        BTNSimpan.setForeground(new java.awt.Color(255, 255, 255));
         BTNSimpan.setText("Simpan");
         BTNSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +104,8 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
             }
         });
 
+        BTNReset.setBackground(new java.awt.Color(221, 16, 16));
+        BTNReset.setForeground(new java.awt.Color(255, 255, 255));
         BTNReset.setText("Reset");
         BTNReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +168,14 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setText("Menu Utama");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -206,7 +219,9 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
+                        .addContainerGap()
+                        .addComponent(jButton2)
+                        .addGap(104, 104, 104)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(124, 124, 124)
@@ -219,7 +234,9 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -268,7 +285,9 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -337,7 +356,7 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
             ResultSet rs = statement.executeQuery();
 
             if(rs.next() == true){
-                String Input = "insert into transaksi (nomor_transaksi, tglParkir, jam_mulai, menit_mulai, jeniskendaraan, nomorslot) values ('"+nomor_transaksi+"', '"+tanggal+"', '"+jamMulai+"', '"+menitMulai+"','"+jeniskendaraan+"', '"+lokasiParkir+"' )";
+                String Input = "insert into transaksi (nomor_transaksi, tgl_Parkir, jam_mulai, menit_mulai, jeniskendaraan, nomorslot) values ('"+nomor_transaksi+"', '"+tanggal+"', '"+jamMulai+"', '"+menitMulai+"','"+jeniskendaraan+"', '"+lokasiParkir+"' )";
                 statement = connection.prepareStatement(Input);
                 rs = statement.executeQuery();
                 JOptionPane.showMessageDialog(null, "Data Pemarkir berhasil disimpan." + "\n" + "Nomor Parkir: " + nomor_transaksi);
@@ -374,6 +393,12 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
     private void TXTNoPolisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTNoPolisiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TXTNoPolisiActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new pendataan().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,6 +441,7 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
     private javax.swing.JTextField TXTLokasiParkir;
     private javax.swing.JTextField TXTNoPolisi;
     private javax.swing.JTextField TXTNoTransaksi;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

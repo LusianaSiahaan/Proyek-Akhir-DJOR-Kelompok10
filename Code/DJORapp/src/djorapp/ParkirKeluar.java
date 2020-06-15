@@ -52,6 +52,8 @@ int JamMulai, MenitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
 
         nomorparkir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        jButton1.setBackground(new java.awt.Color(153, 153, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Lakukan Pembayaran");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +81,8 @@ int JamMulai, MenitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
 
         biaya.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Lihat Biaya Parkir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +170,7 @@ int JamMulai, MenitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
 
             slotParkir = slotparkiran.getText();
             
-            String ubahTanda = "update lokasi_parkir set status = 1 where nomor_slot = '"+slotParkir+"'";
+            String ubahTanda = "update lokasi_parkir set status_slot = 1 where nomor_slot = '"+slotParkir+"'";
             PreparedStatement statement = connection.prepareStatement(ubahTanda);
             ResultSet rs = statement.executeQuery();
             
