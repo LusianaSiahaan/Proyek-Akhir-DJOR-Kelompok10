@@ -332,11 +332,14 @@ String status_slot;
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         // TODO add your handling code here:
+        dispose();
+        new Parkirmasuk().setVisible(true);
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-    new pendataan().setVisible(true);        // TODO add your handling code here:
-    setDefaultCloseOperation(Masuk.DISPOSE_ON_CLOSE);
+    dispose();
+        new pendataan().setVisible(true);        // TODO add your handling code here:
+    
     }//GEN-LAST:event_jButton28ActionPerformed
 
     /**

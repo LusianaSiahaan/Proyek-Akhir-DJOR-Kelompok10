@@ -5,6 +5,8 @@
  */
 package djorapp;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,6 +30,12 @@ public class tabelParkir extends javax.swing.JFrame {
         initComponents();
         tampilTable();
         setDefaultCloseOperation(Masuk.DISPOSE_ON_CLOSE);
+        
+        Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = layar.width / 2  - this.getSize().width / 2;
+        int y = layar.height / 2 - this.getSize().height / 2;
+
+        this.setLocation(x, y);
     }
 
 public void tampilTable(){
@@ -37,10 +45,10 @@ public void tampilTable(){
     
      try {
       Class.forName("org.mariadb.jdbc.Driver").newInstance();
-    String url = "jdbc:mariadb://localhost/parkingsys?user=root&password=lusiana0507";
+    String url = "jdbc:mariadb://localhost/djor?user=root&password=123456789";
     Connection connection = DriverManager.getConnection(url);
 
-    String sql = "SELECT * FROM lokasi_parkir where status = 1";
+    String sql = "SELECT * FROM lokasi_parkir where status_slot = 1";
     PreparedStatement statement = connection.prepareStatement(sql);
 
 ResultSet rs = statement.executeQuery();
@@ -87,17 +95,17 @@ ResultSet rs = statement.executeQuery();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
