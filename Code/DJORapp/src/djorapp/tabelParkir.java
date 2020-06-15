@@ -37,7 +37,7 @@ public void tampilTable(){
     
      try {
       Class.forName("org.mariadb.jdbc.Driver").newInstance();
-    String url = "jdbc:mariadb://localhost/parkingsys?user=root&password=lusiana0507";
+      String url = "jdbc:mariadb://localhost/djor?user=root&password=123456789";
     Connection connection = DriverManager.getConnection(url);
 
     String sql = "SELECT * FROM lokasi_parkir where status = 1";
