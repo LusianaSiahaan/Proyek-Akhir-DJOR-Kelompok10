@@ -48,8 +48,6 @@ public class history extends javax.swing.JFrame {
         _tabel.addColumn("No Slot");
         tbl_pend.setModel(_tabel);
 
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss.SSS");
-        String dateString = format.format(new Date());
         try {
             Class.forName("org.mariadb.jdbc.Driver").newInstance();
             String url = "jdbc:mariadb://localhost/djor?user=root&password=123456789";
@@ -64,7 +62,7 @@ public class history extends javax.swing.JFrame {
                 _tabel.addRow(new Object[]{
                     rs.getInt("nomor_Transaksi"),
                     rs.getString("nomor_plat"),
-                    rs.getDate("tgl_parkir"),
+                    rs.getString("tgl_parkir"),
                     rs.getInt("biaya_parkir"),
                     rs.getInt("jeniskendaraan"),
                     rs.getString("nomorslot"),
