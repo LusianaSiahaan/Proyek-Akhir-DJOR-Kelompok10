@@ -1,5 +1,6 @@
 CREATE TABLE login (
 nama_petugas VARCHAR(50) NOT NULL,
+no_hp VARCHAR(13) NOT NULL,
 username VARCHAR(50) NOT NULL, 
 passwordd VARCHAR(50) NOT NULL);
 
@@ -9,10 +10,12 @@ INSERT INTO login(nama_petugas, username, passwordd) VALUES ('Pemarkir DJOR', 'd
 
 CREATE TABLE transaksi(
 nomor_transaksi INT PRIMARY KEY,
-nomor_plat char(14),
-tgl_parkir DATE, 
-waktu_mulai TIME, 
-waktu_selesai TIME,
+nomor_plat CHAR(14),
+tgl_parkir CHAR(10), 
+jam_mulai INT,
+menit_mulai INT,
+jam_selesai INT,
+menit_selesai INT,
 lama_parkir INT,
 biaya_parkir INT,
 jeniskendaraan INT,
@@ -29,16 +32,12 @@ CONSTRAINT fk_transaksi_lokasi
 	ON UPDATE RESTRICT
 )
 
-CREATE TABLE ParkirMasuk
-no_polisi INT PRIMARY KEY,
-jenis_kendaraan SET, 
-lokasi_parkir CHAR,
-
 CREATE TABLE jenis_kendaraan( 
-jenis INT PRIMARY KEY,
+no_jenis INT PRIMARY KEY,
 nama_kendaraan VARCHAR(30)) 
 
 CREATE TABLE lokasi_parkir(
 nomor_slot char(2),
 status_slot BOOLEAN,
 PRIMARY KEY (nomor_slot));
+)
