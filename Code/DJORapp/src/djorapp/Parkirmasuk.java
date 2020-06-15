@@ -321,7 +321,7 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
     private void BTNSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNSimpanActionPerformed
         try {
             Class.forName("org.mariadb.jdbc.Driver").newInstance();
-            String url = "jdbc:mariadb://localhost/djor?user=root&password=123456789";
+            String url = "jdbc:mariadb://localhost/parkingsys?user=root&password=lusiana0507";
             Connection connection = DriverManager.getConnection(url);
 
             nomor_transaksi = TXTNoTransaksi.getText();

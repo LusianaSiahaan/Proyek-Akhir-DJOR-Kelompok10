@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class ParkirKeluar extends javax.swing.JFrame {
 
-String nomor_parkiran, slotParkir, jamSelesai, menitSelesai;
-int jamMulai, menitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
+String nomor_parkiran, slotParkir, jamSelesai, menitSelesai, jamMulai, menitMulai;
+int JamMulai, MenitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
     public ParkirKeluar() {
         initComponents();
     }
@@ -42,6 +42,8 @@ int jamMulai, menitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         slotparkiran = new javax.swing.JTextField();
+        biaya = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,32 +77,48 @@ int jamMulai, menitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
 
         slotparkiran.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        biaya.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jButton2.setText("Lihat Biaya Parkir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nomorparkir, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nomorparkir, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jamselesai, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(menitselesai, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(slotparkiran, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jamselesai, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(menitselesai, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(slotparkiran, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(biaya)))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,7 +143,15 @@ int jamMulai, menitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
                             .addComponent(jLabel5)
                             .addComponent(slotparkiran, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(biaya, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(3, 3, 3)))
+                .addGap(7, 7, 7))
         );
 
         pack();
@@ -160,53 +186,64 @@ int jamMulai, menitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
                 String InputMenit = "update transaksi set menit_selesai = '"+menitSelesai+"' where nomor_transaksi= '"+nomor_parkiran+"' ";
                 statement = connection.prepareStatement(InputMenit);
                 rs = statement.executeQuery();
+                JOptionPane.showMessageDialog(null, "Kendaraan berhenti memarkir.");
                 
-                /*
-                String query = "Select * from transaksi where nomor_transaksi= '"+nomor_parkiran+"' ";
-                statement = connection.prepareStatement(query);
+                String LamaParkir = " update transaksi set lama_parkir = ((((jam_selesai *60) + menit_selesai)/60) - (((jam_mulai * 60) + menit_mulai)/60))  where nomor_transaksi= '"+nomor_parkiran+"' ";
+                statement = connection.prepareStatement(LamaParkir);
                 rs = statement.executeQuery();
                 
-                //mengambil nilai dari database
-                jamMulai = rs.getInt("jam_mulai");
-                JamSelesai = rs.getInt("jam_selesai");
-                menitMulai = rs.getInt("menit_mulai");
-                MenitSelesai = rs.getInt("menit_selesai");
-                
-                jamMulai = jamMulai * 60;
-                JamSelesai = JamSelesai * 60;
-                
-                menitMulai = menitMulai + jamMulai;
-                MenitSelesai = MenitSelesai + JamSelesai;
-                
-                selisihJam = MenitSelesai - menitMulai;
-                selisihJam = selisihJam/60;
-                fee = 20000;
-
-                                
-                String selisih = "update transaksi set lama_parkir= '"+selisihJam+"' where nomor_transaksi= '"+nomor_parkiran+"' ";
-                statement = connection.prepareStatement(selisih);
+                String ChangeToZero = "update transaksi set lama_parkir = 0 where lama_parkir = 1 ";
+                statement = connection.prepareStatement(ChangeToZero);
                 rs = statement.executeQuery();
-
                 
-                biayaparkir = selisihJam*fee;
-                
-                String biaya = "update transaksi set biaya_parkir= '"+biayaparkir+"' where nomor_transaksi= '"+nomor_parkiran+"' ";
-                statement = connection.prepareStatement(biaya);
+                String Biaya = "update transaksi set biaya_parkir = (lama_parkir)*20000 where nomor_transaksi= '"+nomor_parkiran+"' ";
+                statement = connection.prepareStatement(Biaya);
                 rs = statement.executeQuery();
-                */
-                JOptionPane.showMessageDialog(null, "Kendaraan berhenti memarkir. Tekan OK untuk melihat stuck transaksi ");
-
-                new pembayaran().setVisible(true);        // TODO add your handling code here:
-                setDefaultCloseOperation(Parkirmasuk.DISPOSE_ON_CLOSE);
-            }
+                
+               // String Park = "select biaya_parkir from transaksi where nomor_transaksi= '"+nomor_parkiran+"' ";
+                //statement = connection.prepareStatement(Park);
+                //rs = statement.executeQuery();
+                
+                JOptionPane.showMessageDialog(null, "Kendaraan berhenti memarkir.");
+                
+            } 
             else{
                 JOptionPane.showMessageDialog(null, "Tempat parkir sudah kosong.");
-            }
+            }   
+            
+            
+               
         } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            Class.forName("org.mariadb.jdbc.Driver").newInstance();
+            String url = "jdbc:mariadb://localhost/parkingsys?user=root&password=lusiana0507";
+            Connection connection = DriverManager.getConnection(url);
+
+            String sql = "Select * from transaksi where nomor_transaksi= '"+nomor_parkiran+"' ";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+           
+
+            if(rs.next() == true){
+                biaya.setText(rs.getString("biaya_parkir"));
+            } 
+            else{
+                JOptionPane.showMessageDialog(null, "Gagal menampilkan biaya.");
+            }   
+
+            
+               
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -243,7 +280,9 @@ int jamMulai, menitMulai, JamSelesai,MenitSelesai, fee, biayaparkir, selisihJam;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField biaya;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
