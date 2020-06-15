@@ -40,7 +40,7 @@ public void tampilTable(){
       String url = "jdbc:mariadb://localhost/djor?user=root&password=123456789";
     Connection connection = DriverManager.getConnection(url);
 
-    String sql = "SELECT * FROM lokasi_parkir where status = 1";
+    String sql = "SELECT * FROM lokasi_parkir where status_slot = 1";
     PreparedStatement statement = connection.prepareStatement(sql);
 
 ResultSet rs = statement.executeQuery();
