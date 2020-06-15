@@ -356,7 +356,7 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
             ResultSet rs = statement.executeQuery();
 
             if(rs.next() == true){
-                String Input = "insert into transaksi (nomor_transaksi, tgl_Parkir, jam_mulai, menit_mulai, jeniskendaraan, nomorslot) values ('"+nomor_transaksi+"', '"+tanggal+"', '"+jamMulai+"', '"+menitMulai+"','"+jeniskendaraan+"', '"+lokasiParkir+"' )";
+                String Input = "insert into transaksi (nomor_transaksi, nomor_plat, tgl_Parkir, jam_mulai, menit_mulai, jeniskendaraan, nomorslot) values ('"+nomor_transaksi+"','"+plat+"', '"+tanggal+"', '"+jamMulai+"', '"+menitMulai+"','"+jeniskendaraan+"', '"+lokasiParkir+"' )";
                 statement = connection.prepareStatement(Input);
                 rs = statement.executeQuery();
                 JOptionPane.showMessageDialog(null, "Data Pemarkir berhasil disimpan." + "\n" + "Nomor Parkir: " + nomor_transaksi);
