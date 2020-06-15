@@ -332,7 +332,7 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
             lokasiParkir = TXTLokasiParkir.getText();
             jeniskendaraan = jenKendaraan.getText();
 
-            String sql = "Select * from lokasi_parkir where nomor_slot = '"+lokasiParkir+"' and status = 1 ";
+            String sql = "Select * from lokasi_parkir where nomor_slot = '"+lokasiParkir+"' and status_slot = 1 ";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
 
@@ -342,7 +342,7 @@ String nomor_transaksi, plat, tanggal,jamMulai, menitMulai, jeniskendaraan, loka
                 rs = statement.executeQuery();
                 JOptionPane.showMessageDialog(null, "Data Pemarkir berhasil disimpan." + "\n" + "Nomor Parkir: " + nomor_transaksi);
 
-                String ubahTanda = "update lokasi_parkir set status = false where nomor_slot = '"+lokasiParkir+"' and status = 1";
+                String ubahTanda = "update lokasi_parkir set status_slot = false where nomor_slot = '"+lokasiParkir+"' and status = 1";
                 statement = connection.prepareStatement(ubahTanda);
                 rs = statement.executeQuery();
 
